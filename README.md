@@ -1,2 +1,4 @@
-# acs-engine-k8s-arm-templates
-Repo for holding ARM Templates
+# Sample ARM Templates for ACS-Engine
+
+Would help in setting up `kubernetes` docker enabled clusters!
+

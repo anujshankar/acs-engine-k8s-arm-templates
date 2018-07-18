@@ -1,0 +1,61 @@
+{
+  "apiVersion": "vlabs",
+  "properties": {
+    "orchestratorProfile": {
+      "orchestratorType": "Kubernetes",
+      "orchestratorRelease": "1.10",
+      "orchestratorVersion": "1.10.1",
+      "kubernetesConfig": {
+        "maxPods": 110,
+        "enableRbac": true,
+        "enableAggregatedAPIs": true,
+        "controllerManagerConfig": {
+          "--horizontal-pod-autoscaler-use-rest-clients": "true"
+        },
+        "apiServerConfig": {
+          "--enable-aggregator-routing": "true",
+          "--enable-admission-control": "NamespaceLifecycle,LimitRanger,ServiceAccount,PersistentVolumeLabel,DefaultStorageClass,DefaultTolerationSeconds,ResourceQuota,DenyEscalatingExec,AlwaysPullImages"
+        },
+        "kubeletConfig": {
+          "--cadvisor-port": "4194",
+          "--max-pods": "110"
+        }
+      }
+    },
+    "masterProfile": {
+      "count": 3,
+      "dnsPrefix": "",
+      "vmSize": "Standard_D2s_v3",
+      "vnetSubnetId": "/subscriptions/SUB_ID/resourceGroups/RG_NAME/providers/Microsoft.Network/virtualNetworks/VNET_NAME/subnets/SUBNET_NAME",
+      "firstConsecutiveStaticIP": "172.30.191.239",
+      "vnetCidr": "172.30.128.0/18"
+    },
+    "agentPoolProfiles": [
+      {
+        "name": "worker",
+        "count": 4,
+        "vmSize": "Standard_D4s_v3",
+        "vnetSubnetId": "/subscriptions/SUB_ID/resourceGroups/RG_NAME/providers/Microsoft.Network/virtualNetworks/VNET_NAME/subnets/SUBNET_NAME" 
+      }
+    ],
+    "linuxProfile": {
+      "adminUsername": "",
+      "ssh": {
+        "publicKeys": [
+          {
+            "keyData": ""
+          }
+        ]
+      }
+    },
+    "servicePrincipalProfile": {
+      "clientId": "",
+      "secret": ""
+    },
+    "aadProfile": {
+      "serverAppID": "",
+      "clientAppID": "",
+      "tenantID": ""
+    }
+  }
+}

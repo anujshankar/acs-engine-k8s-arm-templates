@@ -1,0 +1,52 @@
+{
+  "apiVersion": "vlabs",
+  "properties": {
+    "orchestratorProfile": {
+      "orchestratorType": "Kubernetes",
+      "orchestratorRelease": "1.10",
+      "kubernetesConfig": {
+        "maxPods": 110,
+        "enableRbac": true,
+        "networkPlugin": "flannel",
+        "enableAggregatedAPIs": true,
+        "controllerManagerConfig": {
+          "--horizontal-pod-autoscaler-use-rest-clients": "true"
+        },
+        "apiServerConfig": {
+          "--enable-aggregator-routing": "true",
+          "--enable-admission-control": "NamespaceLifecycle,LimitRanger,ServiceAccount,PersistentVolumeLabel,DefaultStorageClass,DefaultTolerationSeconds,ResourceQuota,DenyEscalatingExec,AlwaysPullImages"
+        },
+        "kubeletConfig": {
+          "--cadvisor-port": "4194",
+          "--max-pods": "110"
+        }
+      }
+    },
+    "masterProfile": {
+      "count": 3,
+      "dnsPrefix": "",
+      "vmSize": "Standard_D2s_v3"
+    },
+    "agentPoolProfiles": [
+      {
+        "name": "worker",
+        "count": 4,
+        "vmSize": "Standard_D4s_v3"
+      }
+    ],
+    "linuxProfile": {
+      "adminUsername": "",
+      "ssh": {
+        "publicKeys": [
+          {
+            "keyData": ""
+          }
+        ]
+      }
+    },
+    "servicePrincipalProfile": {
+      "clientId": "",
+      "secret": ""
+    }
+  }
+}
